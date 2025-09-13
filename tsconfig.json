@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    // Type checking
+    "strict": true,
+
+    // Modules
+    "module": "esnext",
+    "rewriteRelativeImportExtensions": true,
+    "rootDir": "./assets/typescript",
+
+    // Emit
+    "outDir": "./public/assets/js",
+    "sourceMap": true,
+  }
+}
