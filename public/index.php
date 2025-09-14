@@ -6,21 +6,15 @@ use Lib\Framework\Controller;
 use Lib\Http\Request;
 use Lib\Http\Response;
 use Lib\Routing\Route;
-use Lib\Templating\Renderer;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
+use Twig\TwigFunction;
 
 define('ROOT_DIR', realpath(__DIR__ . '/..'));
 define('TEMPLATE_DIR', realpath(ROOT_DIR . '/templates'));
 define('SRC_DIR', realpath(ROOT_DIR . '/src'));
 
 require_once ROOT_DIR . '/vendor/autoload.php';
-
-$twig = (function(): Environment {
-    $loader = new FilesystemLoader(TEMPLATE_DIR);
-    
-    return new Environment($loader, []);
-})();
 
 $request = (function(): Request {
     $uri = $_SERVER['REQUEST_URI'];
@@ -39,6 +33,31 @@ $route = (function() use ($routes, $request): ?Route {
     }
 
     return null;
+})();
+
+$twig = (function() use ($routes): Environment {
+    $loader = new FilesystemLoader(TEMPLATE_DIR);
+    
+    $options = [
+        'strict_variables' => true,
+        'optimizations' => 0,
+    ];
+
+    $environment = new Environment($loader, $options);
+
+    $function = new TwigFunction('path', function(string $route) use ($routes) {
+        if(!isset($routes[$route])) {
+            $message = sprintf('Route "%s" does not exists', $route);
+            throw new Exception($message);
+        }
+
+        return $routes[$route]->path;
+    }, []);
+
+    $environment->addGlobal('routes', $routes);
+    $environment->addFunction($function);
+
+    return $environment;
 })();
 
 $controller = (function() use ($twig, $route): ?object {
@@ -82,7 +101,7 @@ $response = (function() use ($controller, $action, $request): Response {
 
         throw new Exception($message);
     }
-
+    
     return $response;
 })();
 
