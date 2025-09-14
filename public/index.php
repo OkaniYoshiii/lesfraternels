@@ -105,4 +105,5 @@ $response = (function() use ($controller, $action, $request): Response {
     return $response;
 })();
 
+http_response_code($response->statusCode);
 echo $response->content;
