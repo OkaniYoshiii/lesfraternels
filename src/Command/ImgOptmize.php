@@ -28,7 +28,7 @@ class ImgOptmize extends Command
         $out = realpath($outputDir);
 
         $formats = ['avif', 'webp', 'png'];
-        $sizes = ['xs' => 80, 'sm' => 160, 'md' => 320, 'lg' => 640, 'xl' => 960, '2xl' => 1280, '3xl' => 1920, '4xl' => 1560];
+        $sizes = ['xs' => 80, 'sm' => 160, 'md' => 320, 'lg' => 640, 'xl' => 960, '2xl' => 1280, '3xl' => 1920, '4xl' => 2560];
 
         foreach($files as $file) {
             $filename = pathinfo($file, PATHINFO_FILENAME);
