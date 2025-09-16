@@ -1,0 +1,23 @@
+<?php
+
+use App\Command\ImgOptmize;
+use Lib\Command\Command;
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+function println(string $data = ''): int {
+    return printf("%s\n", $data);
+}
+
+if($argc < 2) {
+    fprintf(STDERR, "Nom de commande non fourni\n");
+    exit;
+}
+
+$name = $argv[1];
+
+$args = array_slice($argv, 2, null);
+match($name) {
+    'img:optimize' => (new ImgOptmize())->run($args),
+    default => Command::error("Command not found\n"),
+};
