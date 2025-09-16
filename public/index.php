@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Lib\Framework\Controller;
+use Lib\Framework\Twig\TwigExtension;
 use Lib\Http\Request;
 use Lib\Http\Response;
 use Lib\Routing\Route;
@@ -44,18 +45,11 @@ $twig = (function() use ($routes): Environment {
     ];
 
     $environment = new Environment($loader, $options);
+    $extension = new TwigExtension($routes);
 
-    $function = new TwigFunction('path', function(string $route) use ($routes) {
-        if(!isset($routes[$route])) {
-            $message = sprintf('Route "%s" does not exists', $route);
-            throw new Exception($message);
-        }
-
-        return $routes[$route]->path;
-    }, []);
-
-    $environment->addGlobal('routes', $routes);
-    $environment->addFunction($function);
+    foreach($extension->functions() as $function) {
+        $environment->addFunction($function);
+    }
 
     return $environment;
 })();
