@@ -9,13 +9,8 @@ use Lib\Http\Response;
 use Lib\Routing\Route;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
-use Twig\TwigFunction;
 
-define('ROOT_DIR', realpath(__DIR__ . '/..'));
-define('TEMPLATE_DIR', realpath(ROOT_DIR . '/templates'));
-define('SRC_DIR', realpath(ROOT_DIR . '/src'));
-
-require_once ROOT_DIR . '/vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
 $request = (function(): Request {
     $uri = $_SERVER['REQUEST_URI'];
@@ -24,7 +19,7 @@ $request = (function(): Request {
     return new Request($uri, $method);
 })();
 
-$routes = require_once ROOT_DIR . '/config/routes/routes.php';
+$routes = Config\routes();
 
 $route = (function() use ($routes, $request): ?Route {
     foreach($routes as $route) {
@@ -37,7 +32,7 @@ $route = (function() use ($routes, $request): ?Route {
 })();
 
 $twig = (function() use ($routes): Environment {
-    $loader = new FilesystemLoader(TEMPLATE_DIR);
+    $loader = new FilesystemLoader(Config\location('templates'));
     
     $options = [
         'strict_variables' => true,
