@@ -1,1 +1,17 @@
 @import "tailwindcss";
+
+@theme {
+    --color-*: initial;
+
+    --color-gray: #222222;
+    --color-lightgray: #303030;
+    --color-red: #CE0A0A;
+    --color-green: #3BDC0E;
+    --color-white: #FFFFFF;
+}
+
+@layer components {
+    .btn {
+        @apply inline-block bg-red px-4 py-2 rounded text-white;
+    }
+}

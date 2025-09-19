@@ -6,9 +6,30 @@
     <title>Les Fraternels</title>
     <link rel="stylesheet" href="/assets/css/main.css">
 </head>
-<body>
+<body class="bg-lightgray">
+    <header class="py-4 bg-lightgray text-white">
+        <div class="max-w-4xl mx-auto px-4 flex items-center justify-between gap-x-8">
+            <div>
+                <a href="{{ path('home') }}">Les Fraternels</a>
+            </div>
+
+            <ul class="flex gap-x-4">
+                <li><a href="{{ path('home') }}">Accueil</a></li>
+                <li><a href="{{ path('mods') }}">Mods</a></li>
+                <li><a href="">Discord</a></li>
+            </ul>
+        </div>
+    </header>
+
     <main>
         {% block main %}{% endblock %}
     </main>
+    
+    <footer class="bg-lightgray text-white">
+        <ul class="max-w-2xl mx-auto flex justify-center gap-x-8">
+            <li><a href="{{ path('legal_mentions') }}">Mentions légales</a></li>
+            <li><a href="{{ path('contact') }}">Contact</a></li>
+        </ul>
+    </footer>
 </body>
 </html>
