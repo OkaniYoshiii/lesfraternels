@@ -10,3 +10,6 @@
 
 # Image optmize
 /public/assets/images
+
+# PHPBench
+/benchmarks.csv

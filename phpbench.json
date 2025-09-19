@@ -1,0 +1,24 @@
+{
+    "$schema":"./vendor/phpbench/phpbench/phpbench.schema.json",
+    "runner.bootstrap": "vendor/autoload.php",
+    "runner.path": "tests/Benchmark",
+    "report.generators": {
+        "onetime_funcs": {
+            "extends": "aggregate",
+            "title": "One use functions comparison",
+            "description": "Compares differents ways to have a function usable only one time"
+        },
+        "static_vs_dynamic_func": {
+            "extends": "aggregate",
+            "title": "Static VS Dynamic function",
+            "description": "Compares static storage vs dynamic allocation when returning small values in functions"
+        }
+    },
+    "report.outputs": {
+        "csv": {
+            "renderer": "delimited",
+            "delimiter": ",",
+            "file": "benchmarks.csv"
+        }
+    }
+}
