@@ -12,6 +12,10 @@
 
 @layer components {
     .link-disabled {
-        @apply pointer-none cursor-not-allowed line-through;
+        @apply pointer-events-none cursor-not-allowed line-through;
+    }
+
+    .btn-primary {
+        @apply inline-block px-4 py-2 bg-red text-white rounded-md;
     }
 }
