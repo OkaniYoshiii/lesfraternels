@@ -3,7 +3,7 @@ package routes
 import (
 	// "html/template"
 	// "log"
-	"fmt"
+
 	"log"
 	"net/http"
 	"text/template"
@@ -23,8 +23,6 @@ func (handler *HomeHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(base.ParseFiles(files[0], files[1]))
 
 	if err := tmpl.Execute(w, nil); err != nil {
-		fmt.Println("<Error")
-		log.Println("Error")
 		log.Fatal(err)
 	}
 }
