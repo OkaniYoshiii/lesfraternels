@@ -6,6 +6,8 @@ import (
 	"net/http"
 	"os"
 	"time"
+
+	"github.com/OkaniYoshiii/lesfraternels/internal/routes"
 )
 
 const LogsDir = "./logs"
@@ -31,6 +33,8 @@ func main() {
 	}
 
 	logger := log.New(file, "", log.Default().Flags())
+
+	mux.Handle("GET /", new(routes.HomeHandler))
 
 	server := http.Server{
 		Addr:              *address,
