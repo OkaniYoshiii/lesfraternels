@@ -9,3 +9,9 @@
     --color-gray: #222222;
     --color-white: #FFFFFF;
 }
+
+@layer components {
+    .link-disabled {
+        @apply pointer-none cursor-not-allowed line-through;
+    }
+}

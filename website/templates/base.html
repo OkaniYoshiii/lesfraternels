@@ -7,8 +7,8 @@
 
     <link rel="stylesheet" href="/assets/css/main.css">
 </head>
-<body>
-    <header class="bg-gray text-white text-sm sm:text-base whitespace-nowrap py-4">
+<body class="bg-gray">
+    <header class="bg-lightgray text-white text-sm sm:text-base whitespace-nowrap py-4">
         <nav class="max-w-2xl mx-auto px-4 flex justify-between gap-x-8">
             <span>Les Fraternels</span>
             <ul class="flex gap-x-4">
@@ -19,7 +19,7 @@
                     <a href="/mods">Mods</a>
                 </li>
                 <li>
-                    <a class="cursor-not-allowed pointer-none line-through">Discord</a>
+                    <a class="link-disabled">Discord</a>
                 </li>
             </ul>
         </nav>
@@ -29,8 +29,15 @@
         {{ block "main" . }}{{ end }}
     </main>
 
-    <footer class="bg-gray">
-
+    <footer class="bg-lightgray text-white text-sm sm:text-base py-4">
+        <ul class="max-w-2xl mx-auto px-4 flex justify-center gap-x-8">
+            <li>
+                <a class="link-disabled">Mentions légales</a>
+            </li>
+            <li>
+                <a class="link-disabled">Contact</a>
+            </li>
+        </ul>
     </footer>
 </body>
 </html>
