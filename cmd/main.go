@@ -40,7 +40,7 @@ func main() {
 
 	logger := log.New(file, "", log.Default().Flags())
 
-	mux.Handle("GET /", new(routes.HomeHandler))
+	mux.Handle("GET /{$}", new(routes.HomeHandler))
 
 	server := http.Server{
 		Addr:              *address,
