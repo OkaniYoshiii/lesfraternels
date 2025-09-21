@@ -40,7 +40,10 @@ func main() {
 
 	logger := log.New(file, "", log.Default().Flags())
 
+	fileServer := http.FileServer(http.Dir("./website/dist"))
+
 	mux.Handle("GET /{$}", new(routes.HomeHandler))
+	mux.Handle("GET /assets/", http.StripPrefix("/assets/", fileServer))
 
 	server := http.Server{
 		Addr:              *address,
