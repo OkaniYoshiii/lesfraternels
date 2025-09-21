@@ -28,6 +28,12 @@ func main() {
 
 	file, err := os.OpenFile(LogsFile, os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0644)
 
+	defer func() {
+		if err := file.Close(); err != nil {
+			log.Fatal(err)
+		}
+	}()
+
 	if err != nil {
 		log.Fatal(err)
 	}
