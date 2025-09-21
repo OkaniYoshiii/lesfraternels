@@ -1,7 +1,47 @@
 package main
 
-import "fmt"
+import (
+	"flag"
+	"log"
+	"net/http"
+	"os"
+	"time"
+)
+
+const LogsDir = "./logs"
+const LogsFile = LogsDir + "/dev.log"
+
+var address = flag.String("address", "127.0.0.1:8000", "ip address the server will listen to (example: 127.0.0.1:8000)")
 
 func main() {
-	fmt.Println("Hello, World !")
+	flag.Parse()
+
+	mux := http.NewServeMux()
+
+	if _, err := os.Stat(LogsDir); os.IsNotExist(err) {
+		if err := os.Mkdir(LogsDir, 0300); err != nil {
+			log.Fatal(err)
+		}
+	}
+
+	file, err := os.OpenFile(LogsFile, os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0644)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	logger := log.New(file, "", log.Default().Flags())
+
+	server := http.Server{
+		Addr:              *address,
+		Handler:           mux,
+		ReadTimeout:       time.Second * 60,
+		ReadHeaderTimeout: time.Second * 10,
+		WriteTimeout:      time.Second * 60,
+		IdleTimeout:       time.Second * 10,
+		MaxHeaderBytes:    1 << 20, // 1MB
+		ErrorLog:          logger,
+	}
+
+	log.Fatal(server.ListenAndServe())
 }
