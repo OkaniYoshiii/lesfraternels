@@ -21,7 +21,7 @@ func main() {
 	mux := http.NewServeMux()
 
 	if _, err := os.Stat(LogsDir); os.IsNotExist(err) {
-		if err := os.Mkdir(LogsDir, 0300); err != nil {
+		if err := os.Mkdir(LogsDir, 0750); err != nil {
 			log.Fatal(err)
 		}
 	}
