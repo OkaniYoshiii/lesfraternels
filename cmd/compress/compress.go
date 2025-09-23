@@ -71,10 +71,12 @@ func main() {
 				log.Fatal(err)
 			}
 
-			// resized := imaging.Resize(img, int(size), 0, imaging.Lanczos)
 			resized, err := bimg.Resize(img, bimg.Options{
-				Width: int(size),
+				Width:       int(size),
+				Compression: 80,
+				Type:        bimg.WEBP,
 			})
+
 			if err != nil {
 				log.Fatal(err)
 			}
@@ -82,7 +84,7 @@ func main() {
 			base := filepath.Base(filename)
 			ext := filepath.Ext(filename)
 			baseName := base[:len(base)-len(ext)]
-			outputFile := fmt.Sprintf("%s/%s-%s%s", outputDir, baseName, name, ext)
+			outputFile := fmt.Sprintf("%s/%s-%s.webp", outputDir, baseName, name)
 
 			if err := bimg.Write(outputFile, resized); err != nil {
 				log.Fatal(err)
