@@ -1,11 +1,25 @@
 {{ block "main" . }}
-    <div class="py-16">
-        <div class="max-w-2xl mx-auto space-y-8 px-4 text-center">
+    <div class="relative py-16 bg-black/60">
+        <img
+            class="absolute inset-0 w-full h-full object-cover z-[-1]"
+            src="/assets/images/7DTD-screenshot-02-bg-md.webp"
+            srcset="
+                /assets/images/7DTD-screenshot-02-bg-md.webp 1920w,
+                /assets/images/7DTD-screenshot-02-bg-sm.webp 1280w,
+                /assets/images/7DTD-screenshot-02-img-lg.webp 980w,
+                /assets/images/7DTD-screenshot-02-img-md.webp 640w,
+                /assets/images/7DTD-screenshot-02-img-sm.webp 320w,
+            "
+            sizes="100w"
+            alt=""
+            inert=""
+        >
+        <div class="max-w-2xl text-sm sm:text-base mx-auto space-y-8 px-4 text-center">
             <div class="text-red">
-                <h1 class="text-5xl font-bold">Les Fraternels</h1>
-                <span class="text-2xl ">Une véritable expérience de survie</span>
+                <h1 class="text-4xl sm:text-5xl font-bold">Les Fraternels</h1>
+                <span class="text-xl sm:text-2xl">Une véritable expérience de survie</span>
             </div>
-            <p class="text-white text-xl">Survivez à l'apocalypse, rejoignez les rangs des Fraternels et, ensemble, faisons voler la cervelle !</p>
+            <p class="text-white text-lg sm:text-xl">Survivez à l'apocalypse, rejoignez les rangs des Fraternels et, ensemble, faisons voler la cervelle !</p>
             <div>
                 <a class="btn-primary link-disabled">Rejoignez nos rangs</a>
             </div>
