@@ -37,7 +37,7 @@ func SizeMap() map[string]Size {
 
 		"bg-sm": BgSm,
 		"bg-md": BgMd,
-		"bg-mg": BgLg,
+		"bg-lg": BgLg,
 	}
 
 	return sizes
