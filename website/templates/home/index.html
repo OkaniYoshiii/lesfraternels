@@ -25,4 +25,21 @@
             </div>
         </div>
     </div>
+
+    <div class="max-w-5xl mx-auto px-4 py-16 space-y-8">
+        <h2 class="text-3xl md:text-4xl text-white text-center font-bold">Les Fraternels c'est ...</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
+            {{ range $index, $item := $.Items }}
+                <div class="bg-lightgray px-8 py-4 rounded-md space-y-4 shadow-md shadow-black/35">
+                    <h3 class="text-xl text-red text-center font-bold">{{ $item.Name }}</h3>
+                    <p class="text-white">{{ $item.Description }}</p>
+                </div>
+            {{ end }}
+        </div>
+
+        <div class="text-center">
+            <a class="btn-primary link-disabled" href="">Rejoignez-nous</a>
+        </div>
+    </div>
 {{ end }}
