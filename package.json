@@ -5,5 +5,8 @@
   },
   "scripts": {
     "tailwind-watch": "npx @tailwindcss/cli -i ./website/src/css/main.css -o ./website/dist/css/main.css --watch"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.2"
   }
 }
