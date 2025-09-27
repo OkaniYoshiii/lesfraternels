@@ -28,7 +28,6 @@ function handle(slider: HTMLElement): Error | null {
 
     const control = getActiveControl(controls, slides, slidesContainer)
 
-    console.log(control)
     if(!Guards.isHTMLElement(control)) {
         return new Error('Slider: cannot determine the initial active control.')
     }
@@ -58,7 +57,6 @@ function handle(slider: HTMLElement): Error | null {
 
 function getActiveControl(controls: HTMLElement[], slides: HTMLElement[], slidesContainer: HTMLElement): HTMLElement|undefined {
     const index = getActiveSlideIndex(slides, slidesContainer)
-    console.log(slidesContainer.style)
 
     return index !== -1 ? controls[index] : undefined
 }
