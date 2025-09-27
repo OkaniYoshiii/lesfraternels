@@ -37,12 +37,13 @@ func (handler *HomeHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	tmplDir := "./website/templates"
 	files := [...]string{
 		tmplDir + "/base.html",
+		tmplDir + "/components/slider.html",
 		tmplDir + "/home/index.html",
 	}
 
 	base := template.New("base.html")
 
-	tmpl := template.Must(base.ParseFiles(files[0], files[1]))
+	tmpl := template.Must(base.ParseFiles(files[0], files[1], files[2]))
 
 	data := HomeData{}
 	data.Items[0] = Item{

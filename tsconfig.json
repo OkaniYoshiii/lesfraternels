@@ -19,6 +19,9 @@
     "skipLibCheck": true,
 
     "rootDir": "./website/src/typescript",
-    "outDir": "./website/dist/js"
+    "outDir": "./website/dist/js",
+
+    "target": "es2024",
+    "module": "es2022"
   },
 }

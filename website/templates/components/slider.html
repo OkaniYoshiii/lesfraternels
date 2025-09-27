@@ -1,0 +1,48 @@
+{{ define "slider" }}
+    <div data-component="slider" class="relative py-8 space-y-8 bg-black/50">
+        <div class="absolute inset-0 z-[-1]">
+            <img class="w-full h-full object-cover" src="/assets/images/7DTD-screenshot-01-bg-lg.webp" alt="">
+        </div>
+        <div class="max-w-5xl mx-auto px-4 space-y-8">
+            <h2 class="text-3xl md:text-4xl text-white text-center font-bold">De nombreux mods</h2>
+            <div data-slider-element="controls-container" class="grid grid-flow-col auto-cols-fr gap-x-8">
+                {{ range $index, $mod := $.Mods }}
+                    <button data-slider-element="control" class="btn text-white bg-lightgray hover:outline-2 hover:outline-red">{{ $mod.Name }}</button>
+                {{ end }}
+            </div>
+        </div>
+        <div class="overflow-hidden">
+            <div data-slider-element="slides-container" class="max-w-3xl mx-auto px-4 grid grid-flow-col auto-cols-[100%] gap-x-8" style="translate: 0%">
+                {{ range $index, $mod := $.Mods }}
+                    <div data-slider-element="slide" class="flex gap-x-4 bg-lightgray text-white space-y-4">
+                        <div class="grow-2 space-y-8 p-8 shrink">
+                            <h3 class="text-3xl font-bold">{{ $mod.Name }}</h3>
+                            <div class="space-y-4">
+                                <div class="grid grid-cols-2 gap-x-4">
+                                    <div class="space-y-2">
+                                        <h4 class="font-bold">Réalisé par</h4>
+                                        <p>{{ $mod.Creator }}</p>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <h4 class="font-bold">Tags</h4>
+                                        <p>{{ $mod.Tags }}</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p>{{ $mod.Description }}</p>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <a class="btn-primary link-disabled" href="">En savoir plus</a>
+                            </div>
+                        </div>
+
+                        <div class="grow-1 shrink">
+                            <img class="w-full h-full object-cover" src="{{ $mod.Image.Src }}" alt="">
+                        </div>
+                    </div>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+{{ end }}
