@@ -16,7 +16,11 @@
         @apply pointer-events-none cursor-not-allowed line-through;
     }
 
+    .btn {
+        @apply cursor-pointer inline-block px-4 py-2 rounded-md;
+    }
+
     .btn-primary {
-        @apply inline-block px-4 py-2 bg-red text-white rounded-md;
+        @apply cursor-pointer inline-block px-4 py-2 bg-red text-white rounded-md;
     }
 }

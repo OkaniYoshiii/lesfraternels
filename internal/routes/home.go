@@ -11,11 +11,24 @@ import (
 
 type HomeData struct {
 	Items [3]Item
+	Mods  [4]Mod
 }
 
 type Item struct {
 	Name        string
 	Description string
+}
+
+type Mod struct {
+	Name        string
+	Description string
+	Creator     string
+	Image       Image
+	Tags        string
+}
+
+type Image struct {
+	Src string
 }
 
 type HomeHandler struct{}
@@ -45,6 +58,46 @@ func (handler *HomeHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	data.Items[2] = Item{
 		Name:        "Equipe à l'écoute",
 		Description: "Des salons Discord sont dédiés pour les questions, le support en cas de bugs et nous vous répondrons avec plaisir.",
+	}
+
+	data.Mods[0] = Mod{
+		Name:        "Difficulté ajustable",
+		Description: "Permet aux joueurs de modifier les dégâts que vous recevez et infligez aux zombies de manière infinie jusqu’au niveau 15",
+		Creator:     "Bodarn",
+		Image: Image{
+			Src: "/assets/images/7DTD-screenshot-01-img-lg.webp",
+		},
+		Tags: "Survie et immersion",
+	}
+
+	data.Mods[1] = Mod{
+		Name:        "Difficulté ajustable",
+		Description: "Permet aux joueurs de modifier les dégâts que vous recevez et infligez aux zombies de manière infinie jusqu’au niveau 15",
+		Creator:     "Bodarn",
+		Image: Image{
+			Src: "/assets/images/7DTD-screenshot-01-img-lg.webp",
+		},
+		Tags: "Survie et immersion",
+	}
+
+	data.Mods[2] = Mod{
+		Name:        "Difficulté ajustable",
+		Description: "Permet aux joueurs de modifier les dégâts que vous recevez et infligez aux zombies de manière infinie jusqu’au niveau 15",
+		Creator:     "Bodarn",
+		Image: Image{
+			Src: "/assets/images/7DTD-screenshot-01-img-lg.webp",
+		},
+		Tags: "Survie et immersion",
+	}
+
+	data.Mods[3] = Mod{
+		Name:        "Difficulté ajustable",
+		Description: "Permet aux joueurs de modifier les dégâts que vous recevez et infligez aux zombies de manière infinie jusqu’au niveau 15",
+		Creator:     "Bodarn",
+		Image: Image{
+			Src: "/assets/images/7DTD-screenshot-01-img-lg.webp",
+		},
+		Tags: "Survie et immersion",
 	}
 
 	if err := tmpl.Execute(w, data); err != nil {
