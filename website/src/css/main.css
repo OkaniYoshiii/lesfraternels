@@ -9,6 +9,8 @@
     --color-gray: #222222;
     --color-white: #FFFFFF;
     --color-black: #000000;
+
+    --gradient-blend: 90deg, var(--color-gray) 0%, transparent 20%, transparent 80%, var(--color-gray) 100%;
 }
 
 @layer components {
