@@ -12,6 +12,7 @@ import (
 type HomeData struct {
 	Items [3]Item
 	Mods  [4]Mod
+	Team  Team
 }
 
 type Item struct {
@@ -29,6 +30,16 @@ type Mod struct {
 
 type Image struct {
 	Src string
+}
+
+type Team struct {
+	Members []Member
+}
+
+type Member struct {
+	Name  string
+	Role  string
+	Image Image
 }
 
 type HomeHandler struct{}
@@ -100,6 +111,21 @@ func (handler *HomeHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		},
 		Tags: "Survie et immersion",
 	}
+
+	member := Member{
+		Name: "Bodarn",
+		Role: "Administrateur",
+		Image: Image{
+			Src: "",
+		},
+	}
+
+	data.Team.Members = append(data.Team.Members, member)
+	data.Team.Members = append(data.Team.Members, member)
+	data.Team.Members = append(data.Team.Members, member)
+	data.Team.Members = append(data.Team.Members, member)
+	data.Team.Members = append(data.Team.Members, member)
+	data.Team.Members = append(data.Team.Members, member)
 
 	if err := tmpl.Execute(w, data); err != nil {
 		log.Fatal(err)

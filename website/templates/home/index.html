@@ -44,4 +44,27 @@
     </div>
 
     {{ template "slider" . }}
+
+    <div class="py-8">
+        <div class="max-w-5xl mx-auto px-4 text-white space-y-8">
+            <h2 class="text-3xl md:text-4xl text-center font-bold">Notre équipe</h2>
+            <div class="space-y-8">
+                <div class="grid grid-flow-col auto-grid-fr gap-x-8">
+                    {{ range $index, $member := $.Team.Members }}
+                        <div class="flex flex-col items-center space-y-4">
+                            <span class="font-bold">{{ $member.Name }}</span>
+                            <div class="w-35 aspect-square rounded-full bg-white">
+                                <img src="{{ $member.Image.Src }}" alt="">
+                            </div>
+                            <span>{{ $member.Role }}</span>
+                        </div>
+                    {{ end }}
+                </div>
+            </div>
+            <p>Vous pouvez VOUS AUSSI participer à l'aventure des Fraternels ! Pour cela, il vous suffit de nous en faire la demande sur notre Discord !</p>
+            <div class="text-center">
+                <a class="btn-primary link-disabled" href="">Participer à l'aventure des Fraternelss</a>
+            </div>
+        </div>
+    </div>
 {{ end }}
