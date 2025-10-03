@@ -1,0 +1,16 @@
+services:
+  database:
+    image: mariadb:lts
+    ports:
+      - 3306:3306
+    environment:
+      - MARIADB_RANDOM_ROOT_PASSWORD=true
+      - MARIADB_ROOT_HOST=localhost
+      - MARIADB_USER=${DATABASE_USER}
+      - MARIADB_PASSWORD=${DATABASE_PASSWORD}
+      - MARIADB_DATABASE=${DATABASE_NAME}
+    volumes:
+      - database:/var/lib/mysql
+
+volumes:
+  database:
