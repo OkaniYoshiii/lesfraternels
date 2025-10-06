@@ -66,3 +66,5 @@ require (
 	modernc.org/memory v1.11.0 // indirect
 	modernc.org/sqlite v1.38.2 // indirect
 )
+
+tool github.com/pressly/goose/v3/cmd/goose
