@@ -1,0 +1,13 @@
+services:
+    app:
+        container_name: lesfraternels_app
+        build:
+            dockerfile: ./docker/dev/app/Dockerfile
+            context: .
+            args:
+                - UID=${USER_ID}
+                - GID=${GROUP_ID}
+        volumes:
+            - ./:/app
+        ports:
+            - 8000:8000
