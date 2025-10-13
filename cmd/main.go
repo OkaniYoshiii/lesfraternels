@@ -13,7 +13,7 @@ import (
 const LogsDir = "./logs"
 const LogsFile = LogsDir + "/dev.log"
 
-var address = flag.String("address", "127.0.0.1:8000", "ip address the server will listen to (example: 127.0.0.1:8000)")
+var address = flag.String("address", ":8000", "ip address the server will listen to (example: 127.0.0.1:8000)")
 
 func main() {
 	flag.Parse()
