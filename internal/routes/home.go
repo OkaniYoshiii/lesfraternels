@@ -4,9 +4,9 @@ import (
 	// "html/template"
 	// "log"
 
+	"html/template"
 	"log"
 	"net/http"
-	"text/template"
 )
 
 type HomeData struct {
