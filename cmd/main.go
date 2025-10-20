@@ -44,6 +44,7 @@ func main() {
 
 	mux.Handle("GET /{$}", new(routes.HomeHandler))
 	mux.Handle("GET /assets/", http.StripPrefix("/assets/", fileServer))
+	mux.Handle("GET /connexion", new(routes.LoginHandler))
 
 	server := http.Server{
 		Addr:              *address,
