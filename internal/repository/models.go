@@ -8,6 +8,11 @@ import (
 	"database/sql"
 )
 
+type Creator struct {
+	ID   uint32
+	Name string
+}
+
 type Member struct {
 	ID    uint32
 	Name  string
@@ -19,4 +24,21 @@ type Mod struct {
 	Name        string
 	Description string
 	Image       sql.NullString
+}
+
+type ModsCreator struct {
+	ID        uint32
+	ModID     uint32
+	CreatorID uint32
+}
+
+type ModsTag struct {
+	ID    uint32
+	ModID uint32
+	TagID uint32
+}
+
+type Tag struct {
+	ID   uint32
+	Name string
 }
