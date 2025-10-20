@@ -70,9 +70,11 @@ func UsageMessage(commandName string) string {
 	usage := fmt.Sprintf(`Usage : "%s"
 
 Arguments:
-	filepath : (mandatory) relative or absolute path to the JSON file you want to import
-	model : (mandatory) what type of data you want to import. Possible values : %s
-		Ex: %q
+  filepath (mandatory) :
+    - relative or absolute path to the JSON file you want to import
+  model (mandatory) :
+    - what type of data you want to import. Possible values : (%s)
+    - ex: %q
 	`, bnf, possibleValues, modelExample)
 
 	return usage
