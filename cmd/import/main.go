@@ -1,14 +1,18 @@
 package main
 
 import (
+	"encoding/json"
 	"flag"
 	"fmt"
 	"os"
 	"strings"
+
+	"github.com/OkaniYoshiii/lesfraternels/internal/repository"
 )
 
 const CommandName = "import"
 
+const MaxSizeInBytes = 5 * 1000 * 1000 // 5MB
 const MandatoryArgsCount = 3
 
 var hFlag = flag.Bool("h", false, "print help")
@@ -31,6 +35,37 @@ func main() {
 		fmt.Printf("Error : expected %d argument but got %d.\n\n%s\n", MandatoryArgsCount, len(os.Args), UsageMessage(CommandName))
 		os.Exit(1)
 	}
+
+	args := Args{
+		Filepath: os.Args[1],
+		Model:    os.Args[2],
+	}
+
+	fileinfo, err := os.Stat(args.Filepath)
+	if err != nil {
+		fmt.Printf("Error : %s\n", err)
+		os.Exit(1)
+	}
+
+	if fileinfo.Size() > MaxSizeInBytes {
+		fmt.Printf("Error : file %s exceeds max size of %d bytes (received %d bytes)\n", args.Filepath, MaxSizeInBytes, fileinfo.Size())
+		os.Exit(1)
+	}
+
+	data, err := os.ReadFile(args.Filepath)
+	if err != nil {
+		fmt.Printf("Error : %s\n", err)
+		os.Exit(1)
+	}
+
+	fmt.Println(string(data))
+	mod := repository.Mod{}
+	if err := json.Unmarshal(data, &mod); err != nil {
+		fmt.Printf("Error : %s\n", err)
+		os.Exit(1)
+	}
+
+	fmt.Printf("%#v\n", mod)
 }
 
 func PossibleModels() []string {
