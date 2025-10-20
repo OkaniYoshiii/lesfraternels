@@ -9,6 +9,8 @@ import (
 
 const CommandName = "import"
 
+const MandatoryArgsCount = 3
+
 var hFlag = flag.Bool("h", false, "print help")
 
 type Args struct {
@@ -18,7 +20,6 @@ type Args struct {
 
 func main() {
 	flag.Parse()
-	args := os.Args
 	askHelp := *hFlag
 
 	if askHelp == true {
@@ -26,8 +27,9 @@ func main() {
 		os.Exit(0)
 	}
 
-	if len(args) != 2 {
-		fmt.Printf("Error : expected 1 argument but got 0.\n\n%s\n", UsageMessage(CommandName))
+	if len(os.Args) < MandatoryArgsCount {
+		fmt.Printf("Error : expected %d argument but got %d.\n\n%s\n", MandatoryArgsCount, len(os.Args), UsageMessage(CommandName))
+		os.Exit(1)
 	}
 }
 
