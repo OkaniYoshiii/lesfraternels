@@ -11,6 +11,12 @@ services:
       - MARIADB_DATABASE=${DATABASE_NAME}
     volumes:
       - database:/var/lib/mysql
+  adminer:
+    image: adminer:5.4.1-standalone
+    depends_on:
+      - database
+    ports:
+      - 8080:8080
 
 volumes:
   database:
