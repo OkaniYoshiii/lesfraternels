@@ -42,3 +42,9 @@ type Tag struct {
 	ID   uint32
 	Name string
 }
+
+type User struct {
+	ID       uint32
+	Email    string
+	Password string
+}
